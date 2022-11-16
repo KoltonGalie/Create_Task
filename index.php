@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en"> <!--(Template by bootstrap starter template @ https://getbootstrap.com/docs/4.6/example!-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description™ content="">
+<meta name="author" content="">
+<link rel="icon" href="">
+
+<title>Speed Typer</title>
+
+<link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
+
+<!-- Bootstrap core CSS -->
+<link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="https://getbootstrap.com/docs/4.0/examples/starter-template/starter-template.css" rel="stylesheet">
+
+<style>
+
+.correct{
+background-color: yellow;
+display: inline;
+
+}
+
+.incorrect{
+background-color: red;
+display: inline;
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<a class="navbar-brand" href="">Speed Typer</a>
+
+</nav>
+
+<main role="main" class="container”>
+<div class="starter-template">
+<h1 id='display' name=''>Type "start" to begin</h1>
+
+<input type="text’ id="input" autofocus placeholder='Type Here'>
+<p class="lead" id='speed'>Speed: </p>
+<p class="lead" id='maxSpeed'>Max Speed: @</p>
+<p class="lead" id='minSpeed'>Min Speed: @</p>
+<h6>Type the words that appear above the input</h6>
+<label>Select the amount of rounds: </label><select id='roundAmount' >
+<option value='one'>1</option>
+<option value='three'>3</option>
+<option value='five'>5</option>
+<option value='ten'>10</option>
+</select>
+</div>
+
+</main><!-- /.container -->
+
+<!-- Bootstrap core JavaScript (Written by bootstrap starter template @ https://getbootstrap.com/doc
+== -->
+
+<!-- Placed at the end of the document so the pages load faster -->
+
+
+<script src="https://code.jquery.com/jquery-3.6.1.slim.js" integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk=" crossorigin="anonymous"></script>
+
+<script src="https://getbootstrap.com/docs/4.@/assets/js/vendor/popper.min.js"></script>
+
+<script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js" ></script>
+
+<script>
+
+//Initialize key variables for both calculation and running.
+var time = 0;
+
+var wordCount=@;
+
+var isRace=false;
+
+var wordIndex=-1;
+
+var maxSpeed=0;
+
+var minSpeed=null1;
+
+var speed=0;
+
+var charCount=@;
+
+var wordAmount=@;
+
+//Array of words/sentences (sentences were randomly generated with https://randomwordgenerator.c
+//var words=["Be careful with that butter knife.","Nothing is as cautiously cuddly as a pet porcup"];
+
+var words=["test", "hello", "lol"];
+
+//Initialize the html elements as variables for easy calling
+var wordInput = document.getElementById("input");
+
+var wordDisplay = document.getElementById("display");
+
+var speedDisplay = document.getElementById("speed");
+
+var timer;
+
+var test=[];
+
+//call the startRace function when there's a change in value for the input
+wordInput.addEventListener(‘input', startRace);
+
+function startRace(){//Main function for the game
+if(!isRace){
+if ((wordInput. value) .toLowerCase()=="start"){//to start the race
+
+isRace=true;
+
+time=0;
+
+wordCount=0;
+
+charCount=0;
+
+switch(document.getElementById("roundAmount").value){ //Select the amount of rounds
+
+case “one”: wordAmount=1; break;
+case “three”: wordAmount=3; break;
+case "five": wordAmount=5; break;
+case “ten": wordAmount=10; break;
+
+}
+
+changeWord() ;
+
+timer=setInterval(setTimer, 10);
+}
+Jelse{
+if (wordInput.value==wordDisplay.name){//Main calculation to see if what is typed is corr
+speed=Math.floor(((charCount/time)/5)*60) ;
+test.push(charCount + " : "+wordCount+" : "+time);
+if(wordCount+1>0)//outputs speed after each round.
+speedDisplay.innerHTML="Speed: "+speed+" words per minute";
+changeWord();//Call the changeWord function if they get the previous word correct.
+
+}else{
+
+wordDisplay.innerHTML=checkTyped(wordInput.value, wordDisplay.name) ;
+
+}
+
+if (wordCount>wordAmount){//end the race after certain amount of rounds through wordAmount va
+isRace=false;
+clearInterval(timer) ;
+if (speed>maxSpeed)
+maxSpeed=speed ;
+if(speed<minSpeed | |minSpeed==null)
+minSpeed=speed ;
+document .getElementById("maxSpeed").innerHTML="Max Speed: "+maxSpeed;
+document . getElementById("minSpeed").innerHTML="Min Speed: "+minSpeed;
+wordDisplay.innerHTML="Type \"start\" to begin";
+
+function checkTyped(wordInput, sentence){//Returns the correctly formatted highlighting based on
+var output=@;
+var highlightOutput="";
+
+for(var x=0; x<wordInput.length; x++){//for loop to check how many characters the input and
+if (wordInput. charAt(x)==sentence.charAt (x) ){
+output++;
+}else{
+break;
+
+if(wordInput.length==output){//calculates highlights based off of output variable.
+highlightOutput="<p class='correct‘>"+sentence.substring(0, output)+"</p>"+sentence.substring(output)
+}else{
+highlightOutput="<p class='correct'>"+sentence.substring(0, output)+"</p><p class='incorrect'>"+sentence.substring(output,length)+"</p>+sentence.substring(output+length);
+
+return highlightOutput ;
+}
+function changeWord(){//Function that changes the word/sentence based off the words array.
+
+wordInput.value="" ;
+
+wordIndex = Math.floor(Math.random()*words.length);
+wordDisplay.innerHTML=words[wordIndex];
+
+wordDisplay.name=words[wordIndex];
+
+wordCount++;
+
+charCount+=words[wordIndex].length;
+function setTimer(){//This function is purely to start the timer for the words per minute calcul
+
+time+=.01;
+}
+</script>
+</body>
+
+</html>
